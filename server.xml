@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><server>
+    <featureManager>
+        <feature>jsp-2.3</feature>
+        <feature>servlet-3.1</feature>
+        <feature>jdbc-4.1</feature>
+    </featureManager>
+    <httpEndpoint host="*" httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
+    <authData id="prplndmsrvr1Node02/DBUser-ORDERDB" password="???" user="db2inst1"/>
+    <jdbcDriver id="DB2_Using_IBM_JCC_Driver_(XA)" javax.sql.DataSource="com.ibm.db2.jcc.DB2XADataSource">
+        <library>
+            <!-- <file name="${DB2_JCC_DRIVER_PATH}/db2jcc4.jar"/> -->
+            <file name="/config/lib/db2jcc4.jar"/>
+            <!-- <file name="${UNIVERSAL_JDBC_DRIVER_PATH}/db2jcc_license_cu.jar"/> -->
+            <file name="/config/lib/db2jcc_license_cu.jar"/>
+            <!-- <file name="${DB2_JCC_DRIVER_PATH}/db2jcc_license_cisuz.jar"/> -->
+            <file name="/config/lib/db2jcc_license_cisuz.jar"/>
+        </library>
+    </jdbcDriver>
+    <dataSource containerAuthDataRef="prplndmsrvr1Node02/DBUser-ORDERDB" id="OrderDS" jdbcDriverRef="DB2_Using_IBM_JCC_Driver_(XA)" jndiName="jdbc/orderds">
+        <properties.db2.jcc beginTranForResultSetScrollingAPIs="false" beginTranForVendorAPIs="false" connectionSharing="1" databaseName="ORDERDB" enableMultithreadedAccessDetection="false" errorDetectionModel="ExceptionMapping" freeResourcesOnClose="false" jmsOnePhaseOptimization="false" name="OrderDS" nonTransactionalDataSource="false" portNumber="16516" preTestSQLString="SELECT CURRENT SQLID FROM SYSIBM.SYSDUMMY1" reauthentication="false" retrieveMessagesFromServerOnGetMessage="true" serverName="cap-sg-prd-2.integration.ibmcloud.com" traceLevel="-1" unbindClientRerouteListFromJndi="false" useTransactionRedirect="false" validateNewConnection="false" validateNewConnectionRetryCount="100" validateNewConnectionRetryInterval="3"/>
+        <connectionManager agedTimeout="0" connectionTimeout="180" maxIdleTime="1800" maxPoolSize="10" minPoolSize="1" reapTime="180"/>
+    </dataSource>
+    <variable name="DB2_JCC_DRIVER_PATH" value="/opt/IBM/WebSphere/AppServer/deploytool/itp/plugins/com.ibm.datatools.db2_2.1.102.v20100709_0407/driver"/>
+    <variable name="DERBY_JDBC_DRIVER_PATH" value="${WAS_INSTALL_ROOT}/derby/lib"/>
+    <variable name="UNIVERSAL_JDBC_DRIVER_PATH" value="${WAS_INSTALL_ROOT}/universalDriver/lib"/>
+    <variable name="DB2_JCC_DRIVER_NATIVEPATH" value=""/>
+</server>
